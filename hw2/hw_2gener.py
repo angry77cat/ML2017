@@ -22,13 +22,13 @@ x_train= pd.read_csv(sys.argv[3])
 x_train_drop= x_train.drop(drop_out_list, axis= 1)
 x_train= x_train_drop.values.astype(float)
 x_train= np.insert(x_train, 6, x_trainadd, axis= 1) 
-print(x_train.shape)
+# print(x_train.shape)
 
 x_test= pd.read_csv(sys.argv[5])
 x_test_drop= x_test.drop(drop_out_list, axis= 1)
 x_test= x_test_drop.values.astype(float)
 x_test= np.insert(x_test, 6, x_testadd, axis= 1) 
-print(x_test.shape)
+# print(x_test.shape)
 
 #normalize
 comb= np.vstack((x_train,x_test))
@@ -74,7 +74,7 @@ def estimation(x_train, y_train, data_set):
 			sigma2 += np.dot(np.transpose([x_train[i] - u2]), [(x_train[i]- u2)])
 		sigma= (sigma1/ (n1+n2)) + (sigma2/ (n1+n2))
 
-	print(sigma)
+	# print(sigma)
 	return u1, u2, sigma, n1, n2
 
 def sampleSelect(valid_size, seed):

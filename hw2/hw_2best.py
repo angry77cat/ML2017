@@ -4,6 +4,7 @@ import random as rd
 import sys
 import math
 
+# python hw_2logic.py ./train.csv ./test.csv ./X_train ./Y_train ./X_test ./result.csv
 y_train= pd.read_csv(sys.argv[4], header= None).values
 
 x_trainadd= pd.read_csv(sys.argv[1], header= None, encoding= 'big5',).values
@@ -33,13 +34,13 @@ x_train= pd.read_csv(sys.argv[3])
 x_train_drop= x_train.drop(drop_out_list, axis= 1)
 x_train= x_train_drop.values.astype(float)
 x_train= np.insert(x_train, 6, x_trainadd, axis= 1) 
-print(x_train.shape)
+# print(x_train.shape)
 
 x_test= pd.read_csv(sys.argv[5])
 x_test_drop= x_test.drop(drop_out_list, axis= 1)
 x_test= x_test_drop.values.astype(float)
 x_test= np.insert(x_test, 6, x_testadd, axis= 1) 
-print(x_test.shape)
+# print(x_test.shape)
 
 #scaling
 # comb= np.vstack((x_train,x_test))
@@ -65,6 +66,12 @@ for i in range(7):
 	x_train= np.insert(x_train, i+7, x_trainadd2, axis= 1)
 	x_testadd2= x_test[:,i]*x_test[:,i]
 	x_test= np.insert(x_test, i+7, x_testadd2, axis= 1)
+
+for i in [0]:
+	x_trainadd2= x_train[:,i]*x_train[:,i+1]*x_train[:,i+5]*x_train[:,i+6]
+	x_train= np.insert(x_train, i+14, x_trainadd2, axis= 1)
+	x_testadd2= x_test[:,i]*x_test[:,i+1]
+	x_test= np.insert(x_test, i+14, x_testadd2, axis= 1)
 
 # for i in range(7):
 # 	x_trainadd3= x_train[:,i]*x_train[:,i]*x_train[:,i]
@@ -163,9 +170,9 @@ w_lr= np.ones((1,x_train.shape[1]))/1000000000000000
 seed= 127
 valN= 6400
 lr= 0.01
-reNew= 5
+reNew= 2
 epoch= 50
-iteration= 1000000
+iteration= 500000
 lam= 0.00001
 p= 0
 accr= 0.1
@@ -198,7 +205,7 @@ for i in range(iteration):
 	b_grad, w_grad, p, b, w, b_lr, w_lr= train_process(b_grad, w_grad, p, reNew, x_train, y_train, b, w, b_lr, w_lr, lr, valN, train, lam)
 	
 
-	if(i%10000==0):
+	if(i%50000==0):
 		accr= print_result(x_train, y_train, val, train, b, w, valN, i)
 		ite= ite +1
 
