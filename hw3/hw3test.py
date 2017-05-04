@@ -7,11 +7,11 @@ from utils import io
 import read
 
 base_dir = os.path.dirname(os.path.realpath(__file__))
-data_dir = os.path.join(base_dir,'storemodel')
+# data_dir = os.path.join(base_dir,'storemodel')
 
 x_test= read.test_data(sys.argv[1])
 
-model= load_model(os.path.join(data_dir,'{}.hdf5'.format('best')))
+model= load_model(os.path.join('{}.hdf5'.format('weights-improvement-04-0.63bestK65')))
 
 y_test= model.predict_classes(x_test)
 

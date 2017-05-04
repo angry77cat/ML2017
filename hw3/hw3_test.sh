@@ -1,0 +1,1 @@
+python3.6 hw3test.py $1 $2

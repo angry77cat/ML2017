@@ -39,8 +39,8 @@ for path in image_paths:
     print(pred_class, labels[s])
 
     
-    heatmap = visualize_saliency(model, l, filter_indices=[pred_class],
-     seed_img= x)
+    heatmap = visualize_saliency(model, l, filter_indices=range(7),
+     seed_img=x, alpha= 0.3)
     print(heatmap.shape)
     heatmaps.append(heatmap)
 
