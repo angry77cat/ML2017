@@ -1,1 +1,1 @@
-python3.6 hw3train.py $1
+python3 hw3train.py $1

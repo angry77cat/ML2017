@@ -1,1 +1,1 @@
-python3.6 hw3test.py $1 $2
+python3 hw3test.py $1 $2
